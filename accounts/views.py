@@ -5,14 +5,15 @@ from django.views.generic import CreateView
 from .form import CustomerSignUpForm, EmployeeSignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User
+from listings.models import Listing, Category
 
 def register(request):
-    return render(request, '../templates/register.html')
+    return render(request, 'user/register.html')
 
 class customer_register(CreateView):
     model = User
     form_class = CustomerSignUpForm
-    template_name = '../templates/customer_register.html'
+    template_name = 'user/customer_register.html'
 
     def form_valid(self, form):
         user = form.save()
@@ -22,7 +23,7 @@ class customer_register(CreateView):
 class employee_register(CreateView):
     model = User
     form_class = EmployeeSignUpForm
-    template_name = '../templates/employee_register.html'
+    template_name = 'user/employee_register.html'
 
     def form_valid(self, form):
         user = form.save()
@@ -44,9 +45,21 @@ def login_request(request):
                 messages.error(request,"Invalid username or password")
         else:
                 messages.error(request,"Invalid username or password")
-    return render(request, '../templates/login.html',
+    return render(request, 'user/login.html',
     context={'form':AuthenticationForm()})
 
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+# User Dashboard
+def my_dashboard(request):
+
+  return render(request,'dashboard/dashboard.html')
+
+
+class AddListingView(CreateView):
+	model = Listing
+	fields = "__all__"
+	template_name = 'dashboard/add_listing.html' 

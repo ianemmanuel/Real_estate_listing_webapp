@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="home-packages">
+   <p>ADD</p>
+
+   <form action="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+   </form>
+ 
+
+
+</section>
+ 
+<!-- home packages section ends -->
+{% endblock %}

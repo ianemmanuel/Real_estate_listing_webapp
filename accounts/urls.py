@@ -7,4 +7,6 @@ urlpatterns=[
      path('employee_register/',views.employee_register.as_view(), name='employee_register'),
      path('login/',views.login_request, name='login'),
      path('logout/',views.logout_view, name='logout'),
+     path('my-dashboard',views.my_dashboard, name='my_dashboard'),
+     path('add-listing', views.AddListingView.as_view(), name='add_listing'),
 ]

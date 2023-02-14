@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="home-packages">
+ 
+    <h1 class="heading-title"> Real Estate Properties </h1>
+ 
+    <div class="box-container">
+      {% for listing in object_list %}
+       <div class="box">
+          <div class="image">
+             <img src="images/img-1.jpg" alt="">
+          </div>
+          <div class="content">
+             <h3>{{listing.title}}</h3>
+             <p>{{listing.detail}}</p>
+             <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">book now</a>
+          </div>
+       </div>
+       {% endfor %}
+ 
+       
+ 
+ </section>
+ 
+ <!-- home packages section ends -->
+{% endblock %}

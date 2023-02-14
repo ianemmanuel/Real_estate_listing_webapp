@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- home packages section starts  -->
+
+<section class="home-packages">
+
+    <h1 class="heading-title"> Categories </h1>
+ 
+    <div class="box-container">
+    {% if data %}
+		{% for listing in data %}
+       <div class="box">
+          <div class="image">
+             <img src="/media/{{cat.image}}" alt="">
+          </div>
+          <div class="content">
+             <h3>{{cat.title}}</h3>
+             <p>{{cat.description}}</p>
+             <a href="book.php" class="btn">Explore</a>
+          </div>
+       </div>
+
+       {% endfor %}
+    {% endif %}
+
+ 
+    </div>
+ 
+ 
+ </section>
+ 
+ <!-- home packages section ends -->
+{% endblock %}
