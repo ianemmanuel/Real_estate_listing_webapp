@@ -500,6 +500,7 @@ section{
 .booking .book-form{
    padding:2rem;
    background: var(--light-bg);
+   
 }
 
 .booking .book-form .flex{
@@ -512,6 +513,17 @@ section{
    flex:1 1 41rem;
 }
 
+.booking .book-form .flex .inputBox label{
+   font-size: 1.5rem;
+   color:var(--light-black);
+   display: block;
+   margin-bottom: 0.5rem;
+}
+
+.booking .book-form .flex label{
+   font-size: 1.6rem;
+}
+
 .booking .book-form .flex .inputBox input{
    width: 100%;
    padding:1.2rem 1.4rem;
@@ -520,6 +532,20 @@ section{
    text-transform: none;
    margin-top: 1.5rem;
    border:var(--border);
+}
+
+.booking .book-form .flex .inputBox textarea{
+   width: 100%;
+   padding:1.2rem 1.4rem;
+   font-size: 1.6rem;
+   color:var(--light-black);
+   text-transform: none;
+   margin-top: 1.5rem;
+   border:var(--border);
+}
+.booking .book-form .flex .inputBox textarea:focus{
+   background: var(--black);
+   color:var(--white);
 }
 
 .booking .book-form .flex .inputBox input:focus{

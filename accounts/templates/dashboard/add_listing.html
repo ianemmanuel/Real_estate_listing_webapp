@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+        Property Merchant | Add Listing
+    {% endblock %}
 {% block content %}
-<section class="home-packages">
-   <p>ADD</p>
+<section class="booking">
+    <h1 class="heading-title">List your property</h1>
 
-   <form action="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-   </form>
+    <form  method="post" class="book-form">
+        <div class="flex">
+            <div class="inputBox">
+            {% csrf_token %}
+            {{form.as_p}}
+            </div>
+        </div>
+        
+      <input type="submit" value="Post" class="btn" name="send">
+    </form>
  
 
 

@@ -35,13 +35,13 @@ class Listing(models.Model):
     number_of_bedrooms = models.IntegerField()
     number_of_bathrooms = models.IntegerField()
     address = models.CharField(max_length=200)
-    square_footage = models.DecimalField(max_digits=12, decimal_places= 2)
+    area_sqft = models.DecimalField(max_digits=12, decimal_places= 2)
     detail= models.TextField()
     #image
     slug  = models.CharField(max_length=400,default=title)
     video = models.FileField(upload_to="videos_uploaded/",null=True, blank=True)
     detail=RichTextField(blank=True, null=True)
-    payment_type = models.CharField(choices=PAYMENT_TYPE,max_length=1)
+    type = models.CharField(choices=PAYMENT_TYPE,max_length=1)
     price = models.DecimalField(max_digits=12,decimal_places=2)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
      

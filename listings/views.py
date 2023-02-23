@@ -60,3 +60,5 @@ def category_listings(request,cat_id):
 # 	return render(request,'publisher_comic_list.html',{
 # 			'data':data,
 # 			})
+
+

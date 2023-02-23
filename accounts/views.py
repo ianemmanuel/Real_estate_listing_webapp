@@ -6,6 +6,7 @@ from .form import CustomerSignUpForm, EmployeeSignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User
 from listings.models import Listing, Category
+from listings.forms import ListingForm
 
 def register(request):
     return render(request, 'user/register.html')
@@ -60,6 +61,7 @@ def my_dashboard(request):
 
 
 class AddListingView(CreateView):
-	model = Listing
-	fields = "__all__"
-	template_name = 'dashboard/add_listing.html' 
+    model = Listing
+    form_class = ListingForm
+    template_name = 'dashboard/add_listing.html' 
+    # fields = "__all__"
