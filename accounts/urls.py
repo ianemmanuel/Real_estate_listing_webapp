@@ -9,4 +9,6 @@ urlpatterns=[
      path('logout/',views.logout_view, name='logout'),
      path('my-dashboard',views.my_dashboard, name='my_dashboard'),
      path('add-listing', views.AddListingView.as_view(), name='add_listing'),
+     path('update-listing/edit/<int:pk>', views.UpdateListingView.as_view(), name='update_listing'),
+     path('delete-listing/delete/<int:pk>', views.DeleteListingView.as_view(), name='delete_listing'),
 ]

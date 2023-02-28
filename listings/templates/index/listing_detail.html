@@ -5,7 +5,9 @@
     {% endblock %}
 {% block content %}
 <section class="home-packages">
-    <p>{{data.title}}</p>
+    <p>{{data.title}}- Agent: {{data.Agent}}</p>
+    <a href="{% url 'update_listing' data.pk%}" class="btn">Edit</a>
+    <a href="{% url 'delete_listing' data.pk%}" class="btn">Delete</a>
  
 
 

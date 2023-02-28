@@ -25,6 +25,7 @@ def category_list(request):
 # listings
 class ListingsView(ListView):
 	model = Listing
+	ordering = ['-id']
 	template_name = 'index/listings.html'
 
 def listing_detail(request,slug,id):

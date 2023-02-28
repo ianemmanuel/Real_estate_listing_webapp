@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+        Property Merchant | Delete Listing
+    {% endblock %}
+{% block content %}
+<section class="booking">
+    <h1 class="heading-title">Delete: {{post.title}}</h1>
+
+    <form  method="post" class="book-form">
+        <div class="flex">
+            <div class="inputBox">
+            {% csrf_token %}
+            <strong>Are you sure?</strong>>
+            </div>
+        </div>
+        
+      <input type="submit" value="Delete Listing" class="btn" name="send">
+    </form>
+ 
+
+
+</section>
+ 
+<!-- home packages section ends -->
+{% endblock %}

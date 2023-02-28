@@ -7,15 +7,24 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural='1. Users'
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     phone_number = models.CharField(max_length=20)
-    location = models.CharField(max_length=20)
+    
+
+    class Meta:
+        verbose_name_plural='2. Customers'
 
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     phone_number = models.CharField(max_length=20)
-    designation = models.CharField(max_length=20)
+
+
+    class Meta:
+        verbose_name_plural='3. Employees'
 
 
 

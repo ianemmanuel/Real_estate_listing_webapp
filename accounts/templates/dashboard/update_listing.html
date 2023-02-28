@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+        Property Merchant | Edit Listing
+    {% endblock %}
+{% block content %}
+<section class="booking">
+    <h1 class="heading-title">Update your property listing</h1>
+
+    <form  method="post" class="book-form">
+        <div class="flex">
+            <div class="inputBox">
+            {% csrf_token %}
+            {{form.as_p}}
+            </div>
+        </div>
+        
+      <input type="submit" value="Update" class="btn" name="send">
+    </form>
+ 
+
+
+</section>
+ 
+<!-- home packages section ends -->
+{% endblock %}

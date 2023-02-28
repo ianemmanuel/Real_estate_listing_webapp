@@ -2,39 +2,33 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block title %}
-  Sign Up | Property Merchant
+  Agent Sign Up | Property Merchant
 {% endblock %}
 {% block content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-crossorigin="anonymous">
-    <section>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 mx-auto">
-              <div class="card">
-                <div class="card-header text-black">
-                  <h2>Register</h2>
-                </div>
-                <div class="card-body">
-                    <form action="{% url 'employee_register' %}" method="POST" novalidate>
-                      {% csrf_token %}
-                         {% for field in form.visible_fields %}
-                           <div class="form-group">
-                               {{ field.label_tag }}
-                                  {% render_field field class="form-control" %}
-                                    {% for error in field.errors %}
-                                      <span style="color:red">{{ error }}</span>
-                                    {% endfor %}
-                         {% endfor %}
-                             <input type="submit" value="Register" class="btn btn-block btn-primary">
-                           </div>
-                    </form>
-                 </div>
-                    </div>   
-                </div>
-              </div>
-            </div>
+<section class="booking">        
+  <h1 class="heading-title">Agent:Sign Up</h1>
+  
+  <div class="card-body">
+        
+            <form action="{% url 'employee_register' %}" method="POST" novalidate class="book-form">
+              {% csrf_token %}
+                  {% for field in form.visible_fields %}
+                  <div class="flex">
+                    <div class="inputBox">
+                        {{ field.label_tag }}
+                          {% render_field field class="form-control" %}
+                            {% for error in field.errors %}
+                              <span style="color:red">{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    {% endfor %}
+                      
+                    
+                  
+                    <input type="submit" value="Sign UP" class="btn" name="send">
+            </form>
         </div>
-      </section>
+  </section>
 
 {% endblock %}

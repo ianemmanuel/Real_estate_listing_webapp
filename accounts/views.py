@@ -1,12 +1,13 @@
 from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from .form import CustomerSignUpForm, EmployeeSignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User
 from listings.models import Listing, Category
-from listings.forms import ListingForm
+from listings.forms import ListingForm, UpdateListingForm
+from django.urls import reverse_lazy
 
 def register(request):
     return render(request, 'user/register.html')
@@ -65,3 +66,14 @@ class AddListingView(CreateView):
     form_class = ListingForm
     template_name = 'dashboard/add_listing.html' 
     # fields = "__all__"
+
+class UpdateListingView(UpdateView):
+    model = Listing
+    template_name = 'dashboard/update_listing.html'
+    form_class = UpdateListingForm
+    # fields =  ['title','number_of_bedrooms','number_of_bathrooms','address','area_sqft','detail','price','video','type','price','category']
+
+class DeleteListingView(DeleteView):
+    model = Listing
+    template_name = 'dashboard/delete_listing.html'
+    success_url = reverse_lazy('index')
