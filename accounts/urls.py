@@ -11,4 +11,5 @@ urlpatterns=[
      path('add-listing', views.AddListingView.as_view(), name='add_listing'),
      path('update-listing/edit/<int:pk>', views.UpdateListingView.as_view(), name='update_listing'),
      path('delete-listing/delete/<int:pk>', views.DeleteListingView.as_view(), name='delete_listing'),
+     path('settings/',views.UserEditView.as_view(), name='settings'),
 ]

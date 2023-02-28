@@ -5,18 +5,22 @@
     {% endblock %}
 {% block content %}
 <section class="booking">
-    <h1 class="heading-title">Update your property listing</h1>
+    <h1 class="heading-title">Update: {{listing.title}}</h1>
+    {% if user.is_authenticated %}
+        {% if listing.Agent.id == user.id %}
+            <form  method="post" class="book-form">
+                <div class="flex">
+                    <div class="inputBox">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    </div>
+                </div>
+                
+                <input type="submit" value="Update" class="btn" name="send">
+            </form>
+        {% endif %}
+    {% endif %}
 
-    <form  method="post" class="book-form">
-        <div class="flex">
-            <div class="inputBox">
-            {% csrf_token %}
-            {{form.as_p}}
-            </div>
-        </div>
-        
-      <input type="submit" value="Update" class="btn" name="send">
-    </form>
  
 
 

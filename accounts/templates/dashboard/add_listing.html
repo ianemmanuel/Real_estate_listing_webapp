@@ -4,23 +4,45 @@
         Property Merchant | Add Listing
     {% endblock %}
 {% block content %}
-<section class="booking">
-    <h1 class="heading-title">List your property</h1>
-
-    <form  method="post" class="book-form">
-        <div class="flex">
-            <div class="inputBox">
-            {% csrf_token %}
-            {{form.as_p}}
-            </div>
-        </div>
+    {% if user.is_authenticated %}
         
-      <input type="submit" value="Post" class="btn" name="send">
-    </form>
- 
+        <section class="booking">
+            <h1 class="heading-title">List your property</h1>
+            {% if user.is_employee %}
+            <form  method="post" class="book-form">
+                <div class="flex">
+                    <div class="inputBox">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    </div>
+                </div>
+                
+            <input type="submit" value="Post" class="btn" name="send">
+            </form>
+            {% endif %}
 
-
-</section>
- 
+            <script>
+                var name= "{{ user.id }}"
+                document.getElementById("agent_id").value = name;
+            </script>
+        </section>
+        
+    {% else %}
+    <section class="home-packages">
+        <div class="box-container">
+            <div class="box">
+                <div class="content">
+                   <h3>Login</h3>
+                   <p>Login as an agent to upload your property</p>
+                   <a href="{% url 'login' %}" class="btn">Login</a> 
+                </div>
+             </div>
+             {% endif %}
+           </div>
+        </div>
+    </section>
+    
+    
+    
 <!-- home packages section ends -->
 {% endblock %}

@@ -5,18 +5,23 @@
     {% endblock %}
 {% block content %}
 <section class="booking">
-    <h1 class="heading-title">Delete: {{post.title}}</h1>
-
-    <form  method="post" class="book-form">
-        <div class="flex">
-            <div class="inputBox">
-            {% csrf_token %}
-            <strong>Are you sure?</strong>>
-            </div>
-        </div>
+    <h1 class="heading-title">Delete: {{listing.title}}</h1>
+    {% if user.is_authenticated %}
+        {% if user.id == listing.Agent.id %}
         
-      <input type="submit" value="Delete Listing" class="btn" name="send">
-    </form>
+            <form  method="post" class="book-form">
+                <div class="flex">
+                    <div class="inputBox">
+                    {% csrf_token %}
+                    <h2> Are you sure you want to delete your property listing:({{listing.title}}) </h2>
+                    </div>
+                </div>
+                
+            <input type="submit" value="Delete" class="btn" name="send" style="background-color: red; color: white;" >
+            </form>
+        {% endif %}
+        
+    {% endif %}
  
 
 

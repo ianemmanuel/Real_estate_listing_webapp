@@ -23,7 +23,8 @@ class ListingForm(forms.ModelForm):
             'type':forms.Select(attrs={'class':'inputBox'}),
             'price':forms.NumberInput(attrs={'class':'inputBox'}),
             'category':forms.Select(attrs={'class':'inputBox'}),
-            'Agent':forms.Select(attrs={'class':'inputBox'}),
+            # 'Agent':forms.Select(attrs={'class':'inputBox'}),
+            'Agent': forms.TextInput(attrs={'class':'inputBox','value': '', 'id': 'agent_id', 'type':'hidden'}),
             'open_house_date': CustomDateInput(format='%Y-%m-%d %H:%M:%S')
             
         }

@@ -5,9 +5,13 @@
     {% endblock %}
 {% block content %}
 <section class="home-packages">
-    <p>{{data.title}}- Agent: {{data.Agent}}</p>
-    <a href="{% url 'update_listing' data.pk%}" class="btn">Edit</a>
-    <a href="{% url 'delete_listing' data.pk%}" class="btn">Delete</a>
+    <p>{{data.title}}- Agent: {{data.Agent}}-{{data.Agent.id}} user: {{user.id}}</p>
+    {% if user.is_authenticated %}
+        {% if data.Agent.id == user.id %}
+            <a href="{% url 'update_listing' data.pk%}" class="btn">Edit</a>
+            <a href="{% url 'delete_listing' data.pk%}" class="btn" style="background-color: red; color: white;" >Delete</a>
+        {% endif %}
+    {% endif %}
  
 
 

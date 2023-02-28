@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+        Property Merchant | Settings
+    {% endblock %}
+{% block content %}
+
+<section class="booking">        
+    <h1 class="heading-title">Settings</h1>
+    
+    <div class="card-body">
+    {% if user.is_authenticated %}
+        <form  method="post" class="book-form">
+            <div class="flex">
+                <div class="inputBox">
+                {% csrf_token %}
+                {{form.as_p}}
+                </div>
+            </div>
+        
+        <input type="submit" value="Update" class="btn" name="send">
+        </form>
+    {% endif %}
+    </div>
+</section>
+{% endblock %}
