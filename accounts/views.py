@@ -2,8 +2,9 @@ from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .form import CustomerSignUpForm, EmployeeSignUpForm
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
+from .form import CustomerSignUpForm, EmployeeSignUpForm, EditSettingsForm, PasswordChangingForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm,  PasswordChangeForm
+from django.contrib.auth.views import  PasswordChangeView
 from .models import User
 from listings.models import Listing, Category
 from listings.forms import ListingForm, UpdateListingForm
@@ -80,9 +81,19 @@ class DeleteListingView(DeleteView):
     success_url = reverse_lazy('index')
 
 class UserEditView(generic.UpdateView):
-    form_class = UserChangeForm
+    form_class = EditSettingsForm
     template_name = 'user/settings.html'
     success_url = reverse_lazy('index')
 
     def get_object(self):
         return self.request.user
+    
+
+class PasswordsChangeView(PasswordChangeView):
+  form_class = PasswordChangingForm
+  # form_class = PasswordChangeForm
+  success_url = reverse_lazy('password_success')
+  # success_url = reverse_lazy('login')
+
+def password_success(request):
+  return render(request, 'user/password_success.html',{})

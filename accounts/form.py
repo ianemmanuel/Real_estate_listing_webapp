@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django import forms
 from django.db import transaction
 from .models import User,Customer,Employee
@@ -45,3 +45,26 @@ class EmployeeSignUpForm(UserCreationForm):
         employee.phone_number=self.cleaned_data.get('phone_number')
         employee.save()
         return user
+
+
+class EditSettingsForm(UserChangeForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'inputBox'}))
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'inputBox'}))
+    last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'inputBox'}))
+    username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'inputBox'}))  
+    
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email','password')
+
+
+class PasswordChangingForm(PasswordChangeForm):
+  old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'inputBox','type':'password'}))
+  new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'inputBox','type':'password'}))
+  new_password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'inputBox','type':'password'}))
+
+
+  class Meta:
+    model = User
+    fields = ('old_password', 'new_password1', 'new_password2')
