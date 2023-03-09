@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
@@ -25,6 +26,25 @@ class Employee(models.Model):
 
     class Meta:
         verbose_name_plural='3. Employees'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio=models.TextField()
+    profile_pic = models.ImageField(upload_to="profile_imgs/",null=True, blank=True)
+    facebook_url=models.CharField(max_length=200, blank=True, null=True)
+    instagram_url=models.CharField(max_length=200, blank=True, null=True)
+    twitter_url=models.CharField(max_length=200, blank=True, null=True)
+    website_url=models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural='4. Profile'
+
+    def __str__(self):
+        return str(self.user)
+
+    def get_absolute_url(self):
+        return reverse('home')
 
 
 

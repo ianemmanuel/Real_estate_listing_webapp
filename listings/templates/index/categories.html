@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-        Property Merchant | Categories
+         Categories | Property Merchant
 {% endblock %}
 
 {% block content %}
@@ -18,11 +18,11 @@
 		{% for listing in data %}
        <div class="box">
           <div class="image">
-             <img src="/media/{{cat.image}}" alt="">
+             <img src="/media/{{listing.image}}" alt="">
           </div>
           <div class="content">
-             <h3>{{cat.title}}</h3>
-             <p>{{cat.description}}</p>
+             <h3>{{listing.title}}</h3>
+             <p>{{listing.description}}</p>
              <a href="book.php" class="btn">Explore</a>
           </div>
        </div>

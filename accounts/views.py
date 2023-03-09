@@ -2,14 +2,16 @@ from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .form import CustomerSignUpForm, EmployeeSignUpForm, EditSettingsForm, PasswordChangingForm
+from .form import CustomerSignUpForm, EmployeeSignUpForm, EditSettingsForm, PasswordChangingForm, ProfilePageForm, EditProfilePageForm
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm,  PasswordChangeForm
 from django.contrib.auth.views import  PasswordChangeView
-from .models import User
+from .models import User, Profile
 from listings.models import Listing, Category
 from listings.forms import ListingForm, UpdateListingForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView, CreateView, ListView
 
 def register(request):
     return render(request, 'user/register.html')
@@ -97,3 +99,33 @@ class PasswordsChangeView(PasswordChangeView):
 
 def password_success(request):
   return render(request, 'user/password_success.html',{})
+
+
+class ShowProfilePageView(DetailView):
+  model = Profile
+  template_name = 'user/user_profile.html'
+
+  def get_context_data(self, *args, **kwargs):
+    # users = Profile.objects.all()
+    context = super(ShowProfilePageView, self).get_context_data(*args,**kwargs)
+    page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+    context["page_user"] = page_user
+    return context
+
+class EditProfilePageView(generic.UpdateView):
+  model = Profile
+  template_name = 'user/edit_profile_page.html'
+  form_class =  EditProfilePageForm
+
+  success_url = reverse_lazy('index')
+
+class CreateProfilePageView(CreateView):
+  model = Profile
+  template_name = 'user/create_user_profile_page.html'
+  form_class = ProfilePageForm
+  success_url = reverse_lazy('index')
+
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)

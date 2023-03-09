@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+     Edit Profile | Property Merchant 
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <section class="booking">  
+            
+                {% if user.id == profile.user.id %}      
+                    <h1 class="heading-title">Update Profile</h1>
+                    
+                    <div class="card-body">
+                    
+                        <form  method="post" class="book-form" enctype="multipart/form-data">
+                            <div class="flex">
+                                <div class="inputBox">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                </div>
+                            </div>
+                        
+                        <input type="submit" value="Update" class="btn" name="send">
+                        </form>
+                    
+                    </div>
+                {% else %}
+                    <h1 class="heading-title">Unauthorized access!!!</h1>
+                {% endif %}
+        </section>
+    {% else %}
+        <section class="home-packages">
+            <div class="box-container">
+                <div class="box">
+                    <div class="content">
+                    <h3>Login</h3>
+                    <p>Login to edit or create your profile page</p>
+                    <a href="{% url 'login' %}" class="btn">Login</a> 
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}

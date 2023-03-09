@@ -7,7 +7,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>
     {% block title %}
-        Property Merchant
+        Property Merchant | Home
     {% endblock %}
    </title>
 
@@ -33,6 +33,7 @@
       <a href="/">home</a>
       <a href="{% url 'listings' %}">Explore</a>
       <a href="{% url 'categories'%}">Categories</a>
+      <a href="{% url 'categories'%}">Tenancy</a>
       {% if user.is_authenticated %}
       <a href="{% url 'my_dashboard' %}">My Dashboard</a>
       <a href="{% url 'logout' %}">Logout</a>

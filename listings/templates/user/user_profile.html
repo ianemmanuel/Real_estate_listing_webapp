@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+         Profile Page | Property Merchant
+    {% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+
+    <h1 class="heading-title">My Profile Page</h1>
+        <section class="home-about">
+
+            
+                <div class="image">
+                    {% if page_user.profile_pic %}
+                        <img src="{{ page_user.profile_pic.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'images/icon.png'%}" alt="">
+                    {% endif %}
+                </div>
+            
+                
+            
+        
+            <div class="content">
+            <h3>{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h3>
+            <p>{{ page_user.bio}}</p>
+            <a href="about.php" class="btn">Edit</a>
+            </div>
+        
+        </section>
+    {% endif %}
+{% endblock %}

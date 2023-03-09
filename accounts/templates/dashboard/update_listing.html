@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-        Property Merchant | Edit Listing
+         Update Listing | Property Merchant
     {% endblock %}
 {% block content %}
+<br />
 <section class="booking">
     <h1 class="heading-title">Update: {{listing.title}}</h1>
     {% if user.is_authenticated %}
         {% if listing.Agent.id == user.id %}
-            <form  method="post" class="book-form">
+            <form  method="post" class="book-form" enctype="multipart/form-data">
                 <div class="flex">
                     <div class="inputBox">
                     {% csrf_token %}

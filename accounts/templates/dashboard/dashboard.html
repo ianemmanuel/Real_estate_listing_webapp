@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-        Property Merchant | My Dashboard
+         My Dashboard | Property Merchant 
     {% endblock %}
 {% block content %}
 <section class="home-packages">
@@ -11,9 +11,9 @@
          {% if user.is_employee %}
         <div class="box">
            <div class="content">
-              <h3>Add Property Listing</h3>
+              <h3>List Property</h3>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-              <a href="{% url 'add_listing'%}" class="btn">book now</a>
+              <a href="{% url 'add_listing'%}" class="btn">List</a>
            </div>
         </div>
   
@@ -21,31 +21,41 @@
            <div class="content">
               <h3>My Property</h3>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-              <a href="book.php" class="btn">book now</a>
+              <a href="book.php" class="btn">My Property</a>
            </div>
         </div>
         {% endif %}
+        {% if user.profile.id %}
         <div class="box">
            <div class="content">
               <h3>My Profile</h3>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-              <a href="book.php" class="btn">book now</a>
+              <a href="{% url 'show_profile_page' user.profile.id %}" class="btn">Profile</a>
            </div>
         </div>
 
-        <div class="box">
+         <div class="box">
+            <div class="content">
+               <h3>Update Profile</h3>
+               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
+               <a href="{% url 'edit_profile_page' user.profile.id %}" class="btn">Update Profile</a>
+            </div>
+         </div>
+         {% else %}
+
+         <div class="box">
             <div class="content">
                <h3>Create New Profile</h3>
                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-               <a href="book.php" class="btn">book now</a>
+               <a href="{% url 'create_profile_page' %}" class="btn">Create</a>
             </div>
          </div>
-
+         {% endif %}
          <div class="box">
             <div class="content">
                <h3>Settings</h3>
                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-               <a href="{% url 'settings'%}" class="btn">book now</a>
+               <a href="{% url 'settings'%}" class="btn">Settings</a>
             </div>
          </div>
       {% else %}

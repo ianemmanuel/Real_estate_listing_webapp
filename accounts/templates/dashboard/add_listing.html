@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-        Property Merchant | Add Listing
+         Upload Listing | Property Merchant 
     {% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
@@ -9,7 +9,7 @@
         <section class="booking">
             <h1 class="heading-title">List your property</h1>
             {% if user.is_employee %}
-            <form  method="post" class="book-form">
+            <form  method="post" class="book-form" enctype="multipart/form-data">
                 <div class="flex">
                     <div class="inputBox">
                     {% csrf_token %}
@@ -37,10 +37,11 @@
                    <a href="{% url 'login' %}" class="btn">Login</a> 
                 </div>
              </div>
-             {% endif %}
+             
            </div>
         </div>
     </section>
+    {% endif %}
     
     
     
