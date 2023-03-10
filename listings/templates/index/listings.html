@@ -16,8 +16,8 @@
           </div>
           <div class="content">
              <h3>{{listing.title}}</h3>
-             <p>{{listing.detail}}</p>
-             <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">book now</a>
+             <p>{{listing.detail |slice:"70"}}...</p>
+             <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
           </div>
        </div>
        {% endfor %}

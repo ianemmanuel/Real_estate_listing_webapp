@@ -20,6 +20,15 @@ def category_list(request):
     data=Category.objects.all().order_by('-id')
     return render(request,'index/categories.html',{'data':data})
 
+# Comic-list according to category
+def category_listings(request,cat_id):
+	category=Category.objects.get(id=cat_id)
+	data=Listing.objects.filter(category=category).order_by('-id')
+	return render(request,'index/category_property_list.html',{
+			'data':data,
+			'category':category,
+			})
+
 
 
 # listings
@@ -30,7 +39,7 @@ class ListingsView(ListView):
 
 def listing_detail(request,slug,id):
 	listing=Listing.objects.get(id=id)
-	related_listings=Listing.objects.filter(category=listing.category).exclude(id=id)[:4]
+	related_listings=Listing.objects.filter(category=listing.category).exclude(id=id)[:3]
 	
 	return render(request,'index/listing_detail.html',{'data':listing,'related':related_listings})
 
@@ -46,13 +55,6 @@ def listing_detail(request,slug,id):
 	
 # 	})
 		
-# Comic-list according to category
-def category_listings(request,cat_id):
-	category=Category.objects.get(id=cat_id)
-	data=Listing.objects.filter(category=category).order_by('-id')
-	return render(request,'category_product_list.html',{
-			'data':data,
-			})
 
 # Product List According to Brand
 # def publisher_comic_list(request,publisher_id):

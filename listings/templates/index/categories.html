@@ -22,8 +22,8 @@
           </div>
           <div class="content">
              <h3>{{listing.title}}</h3>
-             <p>{{listing.description}}</p>
-             <a href="book.php" class="btn">Explore</a>
+             <p>{{listing.description|slice:"70"}}...</p>
+             <a href="/category-listings/{{listing.id}}" class="btn">Explore</a>
           </div>
        </div>
 

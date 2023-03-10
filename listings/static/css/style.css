@@ -349,12 +349,17 @@ section{
 
 .about .content{
    flex:1 1 41rem;
-   text-align: center;
+   text-align: left;
 }
 
 .about .content h3{
    font-size: 3rem;
    color:var(--black);
+}
+.about .content h4{
+   font-size: 1.5rem;
+   color:var(--black);
+   padding:1rem 0;
 }
 
 .about .content p{
@@ -376,12 +381,14 @@ section{
    background: var(--light-bg);
    padding:2rem;
    flex:1 1 16rem;
+   
 }
 
 .about .content .icons-container .icons i{
    font-size: 4rem;
    margin-bottom: 2rem;
    color:var(--main-color);
+   display: block;
 }
 
 .about .content .icons-container .icons span{
