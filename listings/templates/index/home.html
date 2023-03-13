@@ -12,30 +12,37 @@
     <div class="swiper home-slider">
  
        <div class="swiper-wrapper">
- 
-          <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-1.jpg' %}) no-repeat">
-             <div class="content">
-                <span>explore, discover</span>
-                <h3>Apartments & Condos</h3>
-                <a href="package.php" class="btn">discover more</a>
-             </div>
-          </div>
- 
+         {% if categories %}
+            {% for category in categories %}
+               {% if category.banner %}
+                  <div class="swiper-slide slide" style="background:url(/media/{{category.banner}}) no-repeat">
+                     <div class="content">
+                        <span>explore, discover</span>
+                        <h3>{{category.title}}</h3>
+                        <a href="/category-listings/{{category.id}}" class="btn">discover more</a>
+                     </div>
+                  </div>
+               {% else %}
+               <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
+                  <div class="content">
+                     <span>explore, discover</span>
+                     <h3>{{category.title}}</h3>
+                     <a href="/category-listings/{{category.id}}" class="btn">discover more</a>
+                  </div>
+               </div>
+               {% endif %}
+            {% endfor %}
+         {% else %}
           <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
             <div class="content">
                <span>explore, discover</span>
-               <h3>Mansions & Duplexes</h3>
-               <a href="#" class="btn">discover more</a>
+               <h3>welcome to Property Merchant</h3>
+               <a href="{% url 'my_dashboard' %}" class="btn">My Dashboard</a>
             </div>
          </div>
+         {% endif %}
  
-          <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-3.jpg' %}) no-repeat">
-             <div class="content">
-                <span>explore, discover</span>
-                <h3>Office Spaces</h3>
-                <a href="package.php" class="btn">discover more</a>
-             </div>
-          </div>
+          
           
        </div>
  
@@ -49,7 +56,7 @@
  <!-- home section ends -->
  
  <!-- services section starts  -->
- 
+<!--  
  <section class="services">
  
     <h1 class="heading-title"> our services </h1>
@@ -88,12 +95,12 @@
  
     </div>
  
- </section>
+ </section> -->
  
  <!-- services section ends -->
  
  <!-- home about section starts  -->
- 
+<!--  
  <section class="home-about">
  
     <div class="image">
@@ -107,53 +114,33 @@
     </div>
  
  </section>
- 
- <!-- home about section ends -->
- 
- <!-- home packages section starts  -->
+  -->
+
  
  <section class="home-packages">
  
-    <h1 class="heading-title"> our packages </h1>
- 
+    <h1 class="heading-title">New Listings</h1>
+
     <div class="box-container">
- 
+      {% for listing in data %}
        <div class="box">
           <div class="image">
-             <img src="images/img-1.jpg" alt="">
+             <img src="/media/{{listing.thumbnail}}" alt="">
           </div>
           <div class="content">
-             <h3>adventure & tour</h3>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">book now</a>
+             <h3>{{listing.title}}</h3>
+             <p>{{listing.detail|slice:"70"}}...</p>
+             <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
+             {% if listing.Agent.profile %}
+             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
+             {% endif %}
           </div>
        </div>
- 
-       <div class="box">
-          <div class="image">
-             <img src="images/img-2.jpg" alt="">
-          </div>
-          <div class="content">
-             <h3>adventure & tour</h3>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">book now</a>
-          </div>
-       </div>
-       
-       <div class="box">
-          <div class="image">
-             <img src="images/img-3.jpg" alt="">
-          </div>
-          <div class="content">
-             <h3>adventure & tour</h3>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">book now</a>
-          </div>
-       </div>
+       {% endfor %}
  
     </div>
  
-    <div class="load-more"> <a href="package.php" class="btn">load more</a> </div>
+    <div class="load-more"> <a href="{% url 'listings' %}" class="btn">Discover more</a> </div>
  
  </section>
  
@@ -161,13 +148,13 @@
  
  <!-- home offer section starts  -->
  
- <section class="home-offer">
+ <!-- <section class="home-offer">
     <div class="content">
        <h3>upto 50% off</h3>
        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure tempora assumenda, debitis aliquid nesciunt maiores quas! Magni cumque quaerat saepe!</p>
        <a href="book.php" class="btn">book now</a>
     </div>
- </section>
+ </section> -->
  
  <!-- home offer section ends -->
  

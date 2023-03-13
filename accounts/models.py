@@ -36,6 +36,9 @@ class Profile(models.Model):
     instagram_url=models.CharField(max_length=200, blank=True, null=True)
     twitter_url=models.CharField(max_length=200, blank=True, null=True)
     website_url=models.CharField(max_length=200, blank=True, null=True)
+    pinterest_url=models.CharField(max_length=200, blank=True, null=True)
+    tiktok_url=models.CharField(max_length=200, blank=True, null=True)
+    youtube_url=models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         verbose_name_plural='4. Profile'

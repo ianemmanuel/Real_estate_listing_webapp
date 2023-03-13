@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  Explore | Property Merchant 
+        My Listings | Property Merchant
     {% endblock %}
 {% block content %}
 <section class="home-packages">
  
-    <h1 class="heading-title">Explore</h1>
+    <h1 class="heading-title">My Listings</h1>
  
     <div class="box-container">
       {% for listing in object_list %}
@@ -18,9 +18,10 @@
              <h3>{{listing.title}}</h3>
              <p>{{listing.detail |slice:"70"}}...</p>
              <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
-             {% if listing.Agent.profile %}
-             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
-             {% endif %}
+             {% if user.id == listing.Agent.id %}
+                <a href="{% url 'update_listing' listing.pk%}" class="btn">Edit <i class="fas fa-sync-alt"></i></a>
+                <a href="{% url 'delete_listing' listing.pk%}" class="btn" style="background-color: red; color: white;" >Delete <i class="far fa-trash-alt"></i></a>
+            {% endif %}
           </div>
        </div>
        {% endfor %}
@@ -28,6 +29,4 @@
        
  
  </section>
- 
- <!-- home packages section ends -->
 {% endblock %}

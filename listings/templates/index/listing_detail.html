@@ -1,70 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-        Property Merchant | {{data.title}}
-    {% endblock %}
+   {{data.title}} | Property Merchant 
+{% endblock %}
 {% block content %}
-<section class="home-packages">
-    <p>{{data.title}}- Agent: {{data.Agent}}-{{data.Agent.id}} user: {{user.id}}</p>
-    {% if user.is_authenticated %}
-        {% if data.Agent.id == user.id %}
-            <a href="{% url 'update_listing' data.pk%}" class="btn">Edit</a>
-            <a href="{% url 'delete_listing' data.pk%}" class="btn" style="background-color: red; color: white;" >Delete</a>
-        {% endif %}
-    {% endif %}
-</section>
-
 
 <section class="about">
     
 
     <div class="image">
-       <img src="images/about-img.jpg" alt="">
+       <img src="/media/{{data.thumbnail}}" alt="">
     </div>
  
     <div class="content">
        <h3>{{data.title}}</h3>
-       <h4>Price: {{data.price}}</h4>
-       <h4>Agent/Home Owner: {{data.Agent.first_name}} {{data.Agent.last_name}}</h4>
-       <h4>Address: {{data.address}}</h4>
-       <h4>Tenancy: {{data.type}}</h4>
        <p>{{data.detail}}</p>
        <div class="icons-container">
+         <a href="{% url 'show_profile_page' data.Agent.profile.id %}">
+            <div class="icons">
+               <i class="fas fa-user"></i>
+                <span>Agent: {{data.Agent.first_name}} {{data.Agent.last_name}}</span>
+             </div>
+         </a>
           <div class="icons">
-             <i class="fas fa-map"></i>
-             <span>Facebook</span>
-          </div>
+            <i class="fas fa-file-contract"></i>
+            <span>Tenancy: {{data.type}} </span>
+         </div>
           <div class="icons">
              <i class="fas fa-hand-holding-usd"></i>
-             <span>Twitter</span>
+             <span>Price: ${{data.price}}</span>
           </div>
           <div class="icons">
-             <i class="fas fa-headset"></i>
-             <span>Instagram</span>
+            <i class="fas fa-map-marker-alt"></i>
+             <span>Address: {{data.address}}</span>
           </div>
-          <div class="icons">
-            <i class="fas fa-headset"></i>
-            <span>YouTube</span>
+         <div class="icons">
+            <i class="fas fa-bath"></i>
+            <span>Bathrooms: {{data.number_of_bathrooms}}</span>
          </div>
          <div class="icons">
-            <i class="fas fa-headset"></i>
-            <span>TikTok</span>
+            <i class="fas fa-bed"></i>
+            <span>Bedrooms: {{data.number_of_bedrooms}}</span>
          </div>
          <div class="icons">
-            <i class="fas fa-headset"></i>
-            <span>Website</span>
+            <i class="fas fa-th"></i>
+            <span>Area: {{data.area_sqft}} sqft</span>
          </div>
+         <div class="icons">
+            <i class="far fa-calendar-alt"></i> 
+            <span>Open House: {{data.open_house_date}}</span>
+         </div>
+         
        </div>
     </div>
  
  </section>
+ <section class="home">
+   <h3> Images </h3>
+   <div class="swiper home-slider">
+
+      <div class="swiper-wrapper">
+
+         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-1.jpg' %}) no-repeat">
+            
+         </div>
+
+         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
+           
+        </div>
+
+         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-3.jpg' %}) no-repeat">
+            
+         </div>
+         
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+   </div>
+
+</section>
+<section class="booking">
+   <h3>Video</h3>
+   
+      <video controls="controls">
+         <source src="/media/{{data.video}}" type="video/mp4" />
+   
+      </video>
+   
+   
+</section>
+ 
 
  
- <!-- about section ends -->
- 
- <!-- reviews section starts  -->
- 
- <section class="reviews">
+ <!-- <section class="reviews">
  
     <h1 class="heading-title"> clients reviews </h1>
  
@@ -154,28 +184,40 @@
  
     </div>
  
- </section>
- <section class="home-packages">
- 
-    <h1 class="heading-title">Others you might like...</h1>
- 
-    <div class="box-container">
-      {% for listing in related %}
-       <div class="box">
-          <div class="image">
-             <img src="images/img-1.jpg" alt="">
-          </div>
-          <div class="content">
-             <h3>{{listing.title}}</h3>
-             <p>{{listing.detail |slice:"70"}}...</p>
-             <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
-          </div>
-       </div>
-       {% endfor %}
- 
-       
- 
- </section>
+ </section> -->
+ {% if related %}
+   <section class="home-packages">
+      <h1 class="heading-title">Others you might like...</h1>
+      <div class="box-container">
+         {% for listing in related %}
+         <div class="box">
+            <div class="image">
+               <img src="images/img-1.jpg" alt="">
+            </div>
+            <div class="content">
+               <h3>{{listing.title}}</h3>
+               <p>{{listing.detail |slice:"70"}}...</p>
+               <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
+               {% if listing.Agent.profile %}
+             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
+             {% endif %}
+            </div>
+         </div>
+         {% endfor %}
+      </div> 
+   </section>
+ {% endif %}
+{% if user.is_authenticated %}
+   {% if data.Agent.id == user.id %}
+   <section class="home-packages">
+      <h3>Listing Settngs</h3>
+      <div class="box-container">
+         <a href="{% url 'update_listing' data.pk%}" class="btn">Edit <i class="fas fa-sync-alt"></i></a>
+               <a href="{% url 'delete_listing' data.pk%}" class="btn" style="background-color: red; color: white;" >Delete <i class="far fa-trash-alt"></i></a>
+      </div> 
+   </section>
+   {% endif %}
+{% endif %}
  
 <!-- home packages section ends -->
 {% endblock %}

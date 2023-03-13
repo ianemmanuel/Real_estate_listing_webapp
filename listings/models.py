@@ -13,6 +13,7 @@ class Category(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cat_imgs/")
     description = models.TextField(blank=True, null=True)
+    banner = models.ImageField(upload_to="banner_imgs/",blank=True, null=True)
 
 
     class Meta:
@@ -39,7 +40,7 @@ class Listing(models.Model):
     address = models.CharField(max_length=200)
     area_sqft = models.DecimalField(max_digits=12, decimal_places= 2)
     detail= models.TextField(blank=True,null=True)
-    #image
+    thumbnail = models.ImageField(blank=True, null=True,upload_to='thumbnail_imgs/')
     slug  = models.CharField(max_length=400,default=title)
     video = models.FileField(upload_to="videos_uploaded/",null=True, blank=True)
     
@@ -62,3 +63,17 @@ class Listing(models.Model):
         # return reverse('comic_detail', args=(str(self.id)))
         return reverse('index')
 
+# Create your models here.
+class Banner(models.Model):
+    img = models.ImageField(upload_to="banner_imgs/")
+    alt_text= models.CharField(max_length=32)
+
+    class Meta:
+        verbose_name_plural='3. Banners'
+
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="70" />' % (self.img.url))
+
+    def __str__(self):
+        return self.alt_text

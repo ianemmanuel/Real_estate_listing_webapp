@@ -18,5 +18,6 @@ urlpatterns=[
      path('<int:pk>/profile/', views.ShowProfilePageView.as_view(), name= 'show_profile_page'),
      path('<int:pk>/edit_profile_page/', views.EditProfilePageView.as_view(), name= 'edit_profile_page'),
      path('create_profile_page/', views.CreateProfilePageView.as_view(), name= 'create_profile_page'),
+     path('<int:pk>/my_listings', views.ViewListings.as_view(), name='my_listings'),
      
 ]

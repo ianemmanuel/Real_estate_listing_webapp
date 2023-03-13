@@ -6,7 +6,7 @@
 {% block content %}
     {% if user.is_authenticated %}
 
-    <h1 class="heading-title">My Profile Page</h1>
+    
         <section class="home-about">
 
             
@@ -24,7 +24,36 @@
             <div class="content">
             <h3>{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h3>
             <p>{{ page_user.bio}}</p>
-            <a href="about.php" class="btn">Edit</a>
+            {% if user.id == page_user.id%}
+            <h4> contacts </h4>
+            {% else %}
+            <h4>Contact Me:</h4>
+            {% endif %}
+            {% if page_user.facebook_url %}
+            <a href="{{ page_user.facebook_url}}" class="btn" target="_blank"> <i class="fab fa-facebook-f"></i></a>
+            {% endif %}
+            {% if page_user.twitter_url %}
+            <a href="{{ page_user.twitter_url}}" class="btn" target="_blank"> <i class="fab fa-twitter"></i></a>
+            {% endif %}
+            {% if page_user.pinterest_url%}
+            <a href="{{ page_user.pinterest_url}}" class="btn" target="_blank">t <i class="fab fa-pinterest"></i></a>
+            {% endif %}
+            {% if page_user.instagram_url %}
+            <a href="{{ page_user.instagram_url}}" class="btn" target="_blank"><i class="fab fa-instagram"></i></a>
+            {% endif %}
+            {% if page_user.tiktok_url %}
+            <a href="{{ page_user.tiktok_url}}" class="btn" target="_blank"> <i class="fab fa-tiktok"></i></a>
+            {% endif %}
+            {% if page_user.youtube_url %}
+            <a href="{{ page_user.youtube_url}}" class="btn" target="_blank"> <i class="fab fa-youtube"></i></a>
+            {% endif %}
+            {% if page_user.website_url %}
+            <a href="{{ page_user.website_url}}" class="btn" target="_blank"> <i class="fas fa-globe"></i></a>
+            {% endif %}
+            
+            {% if user.id == page_user.id%}
+            <a href="{% url 'edit_profile_page' user.profile.id %}" class="btn">Update Profile <i class="fas fa-sync-alt"></i></a>
+            {% endif %}
             </div>
         
         </section>

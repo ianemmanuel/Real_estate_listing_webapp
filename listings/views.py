@@ -1,19 +1,19 @@
 
 from django.shortcuts import render
-from .models import Category, Listing
+from .models import Category, Listing, Banner
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
-def index(request):
-    return render(request, 'index/home.html')
+# def index(request):
+#     return render(request, 'index/home.html')
 
 # Create your views here.
 # Home Page
 def home(request):
-	banners=Banner.objects.all().order_by('-id')
-	data=Listing.objects.filter(is_featured=True).order_by('-id')
-	return render(request,'landing_page.html',{'data':data,'banners':banners})
+	categories=Category.objects.all()
+	data=Listing.objects.all()[:3]
+	return render(request,'index/home.html',{'data':data, 'categories':categories})
 
 # Category
 def category_list(request):

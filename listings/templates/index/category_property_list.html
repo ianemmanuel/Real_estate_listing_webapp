@@ -19,6 +19,9 @@
              <h3>{{listing.title}}</h3>
              <p>{{listing.detail|slice:"70"}}...</p>
              <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
+             {% if listing.Agent.profile %}
+             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
+             {% endif %}
           </div>
        </div>
        {% endfor %}

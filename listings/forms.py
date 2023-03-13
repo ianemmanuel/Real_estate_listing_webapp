@@ -10,7 +10,7 @@ class CustomDateInput(forms.DateInput):
 class ListingForm(forms.ModelForm):
     class Meta:
         model = Listing
-        fields =('title','price','category','Agent','type','number_of_bedrooms','number_of_bathrooms','address','area_sqft','detail','video', 'open_house_date')
+        fields =('title','price','category','Agent','type','number_of_bedrooms','number_of_bathrooms','address','area_sqft','detail','thumbnail','video', 'open_house_date')
 
         widgets = {
             'title':forms.TextInput(attrs={'class':'inputBox'}),
@@ -20,6 +20,7 @@ class ListingForm(forms.ModelForm):
             'area_sqft':forms.NumberInput(attrs={'class':'inputBox'}),
             'detail':forms.Textarea(attrs={'class':'inputBox'}),
             'video':forms.FileInput(),
+            
             'type':forms.Select(attrs={'class':'inputBox'}),
             'price':forms.NumberInput(attrs={'class':'inputBox'}),
             'category':forms.Select(attrs={'class':'inputBox'}),
@@ -32,7 +33,7 @@ class ListingForm(forms.ModelForm):
 class UpdateListingForm(forms.ModelForm):
     class Meta:
         model = Listing
-        fields =('title','price','category','type','number_of_bedrooms','number_of_bathrooms','address','area_sqft','detail','video', 'open_house_date')
+        fields =('title','price','category','type','number_of_bedrooms','number_of_bathrooms','address','area_sqft','detail','video','thumbnail', 'open_house_date')
 
         widgets = {
             'title':forms.TextInput(attrs={'class':'inputBox'}),
