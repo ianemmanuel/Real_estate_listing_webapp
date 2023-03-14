@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+         Tenancy | Property Merchant
+{% endblock %}
+
+{% block content %}
+
+<!-- home packages section starts  -->
+
+<section class="home-packages">
+
+    <h1 class="heading-title"> Tenancy </h1>
+    
+    <div class="box-container">
+        {% for type in types %}
+        <div class="box">
+            <div class="content">
+               <h3>{{ type }}</h3>
+               <p>Explore properties {{type}}</p>
+               <a href="{% url 'listings_by_type' type_name=type %}" class="btn">{{ type }}</a>
+        
+            </div>
+         </div>
+        {% endfor %}
+    </div>
+    
+    
+
+</section>
+
+{% endblock %}

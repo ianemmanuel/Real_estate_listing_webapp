@@ -24,7 +24,7 @@
          </a>
           <div class="icons">
             <i class="fas fa-file-contract"></i>
-            <span>Tenancy: {{data.type}} </span>
+            <span>Tenancy: {{ payment_type }} </span>
          </div>
           <div class="icons">
              <i class="fas fa-hand-holding-usd"></i>
@@ -55,10 +55,11 @@
     </div>
  
  </section>
+ {% if data.images %}
  <section class="home">
    <h3> Images </h3>
    <div class="swiper home-slider">
-
+   
       <div class="swiper-wrapper">
 
          <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-1.jpg' %}) no-repeat">
@@ -74,13 +75,14 @@
          </div>
          
       </div>
-
+   
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
 
    </div>
 
 </section>
+{% endif %}
 <section class="booking">
    <h3>Video</h3>
    
@@ -185,22 +187,22 @@
     </div>
  
  </section> -->
- {% if related %}
+ {% if related_listings %}
    <section class="home-packages">
       <h1 class="heading-title">Others you might like...</h1>
       <div class="box-container">
-         {% for listing in related %}
+         {% for listing in related_listings %}
          <div class="box">
             <div class="image">
-               <img src="images/img-1.jpg" alt="">
+               <img src="/media/{{listing.thumbnail}}" alt="">
             </div>
             <div class="content">
                <h3>{{listing.title}}</h3>
                <p>{{listing.detail |slice:"70"}}...</p>
                <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
                {% if listing.Agent.profile %}
-             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
-             {% endif %}
+                  <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
+               {% endif %}
             </div>
          </div>
          {% endfor %}

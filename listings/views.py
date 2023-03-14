@@ -1,15 +1,10 @@
 
-from django.shortcuts import render
-from .models import Category, Listing, Banner
+from django.shortcuts import render, redirect
+from .models import Category, Listing
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
-# def index(request):
-#     return render(request, 'index/home.html')
-
-# Create your views here.
-# Home Page
 def home(request):
 	categories=Category.objects.all()
 	data=Listing.objects.all()[:3]
@@ -41,27 +36,24 @@ def listing_detail(request,slug,id):
 	listing=Listing.objects.get(id=id)
 	related_listings=Listing.objects.filter(category=listing.category).exclude(id=id)[:3]
 	
-	return render(request,'index/listing_detail.html',{'data':listing,'related':related_listings})
+	return render(request,'index/listing_detail.html',{'data':listing, 'related_listings': related_listings,
+    'payment_type': dict(Listing.PAYMENT_TYPE)[listing.type]})
 
 
-# def listings(request):
-# 	total_data=Listing.objects.count()
-# 	data=Listing.objects.all().order_by('-id')
-	
-# 	return render(request,'index/listings.html',
-# 	{
-# 		'data':data,
-# 		'total_data':total_data,
-	
-# 	})
+
 		
+def tenancy(request):
+     # Get all the available choices for the type field
+    types = dict(Listing.PAYMENT_TYPE).values()
+    
+    # Pass the choices to the template
+    context = {'types': types}
+    return render(request,'index/tenancy.html',context)
 
-# Product List According to Brand
-# def publisher_comic_list(request,publisher_id):
-# 	publisher=Location.objects.get(id=publisher_id)
-# 	data=Listing.objects.filter(publisher=publisher).order_by('-id')
-# 	return render(request,'publisher_comic_list.html',{
-# 			'data':data,
-# 			})
-
-
+def tenancy_listings_view(request,  type_name):
+    listings = Listing.objects.filter(type__in=[k for k, v in Listing.PAYMENT_TYPE if v == type_name])
+    context = {
+        'listings': listings,
+        'type_name': type_name
+    }
+    return render(request, 'index/tenancy_property_list.html', context)

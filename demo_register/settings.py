@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'listings',
     'ckeditor',
+    'multiupload',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

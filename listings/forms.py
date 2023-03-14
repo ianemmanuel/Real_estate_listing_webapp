@@ -20,7 +20,7 @@ class ListingForm(forms.ModelForm):
             'area_sqft':forms.NumberInput(attrs={'class':'inputBox'}),
             'detail':forms.Textarea(attrs={'class':'inputBox'}),
             'video':forms.FileInput(),
-            
+            'images': forms.ClearableFileInput(attrs={'multiple': True}),
             'type':forms.Select(attrs={'class':'inputBox'}),
             'price':forms.NumberInput(attrs={'class':'inputBox'}),
             'category':forms.Select(attrs={'class':'inputBox'}),

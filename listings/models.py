@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from demo_register import settings
 from django.urls import reverse
 from datetime import datetime, date
+from multiupload.fields import MultiFileField
 # from ckeditor.fields import RichTextField
 
 # Create your models here.
@@ -29,7 +30,7 @@ class Category(models.Model):
 class Listing(models.Model):
 
     PAYMENT_TYPE=[
-    ('R','Rent'),
+    ('R','For Rent'),
     ('S','For Sale'),
     ('L', 'For Lease')
     ]
@@ -62,18 +63,3 @@ class Listing(models.Model):
     def get_absolute_url(self):
         # return reverse('comic_detail', args=(str(self.id)))
         return reverse('index')
-
-# Create your models here.
-class Banner(models.Model):
-    img = models.ImageField(upload_to="banner_imgs/")
-    alt_text= models.CharField(max_length=32)
-
-    class Meta:
-        verbose_name_plural='3. Banners'
-
-    
-    def image_tag(self):
-        return mark_safe('<img src="%s" width="70" />' % (self.img.url))
-
-    def __str__(self):
-        return self.alt_text

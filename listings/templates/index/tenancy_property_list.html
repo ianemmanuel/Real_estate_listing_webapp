@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}
-  {{category.title}} | Property Merchant 
-    {% endblock %}
+    {{type.title}} | Property Merchant
+{% endblock %}
+
 {% block content %}
 <section class="home-packages">
  
-    <h1 class="heading-title"> {{category.title}} </h1>
+    <h1 class="heading-title"> {{ type_name }} </h1>
     
     <div class="box-container">
-    {% if data %}
-      {% for listing in data %}
+    {% if listings %}
+      {% for listing in listings %}
        <div class="box">
           <div class="image">
              <img src="/media/{{listing.thumbnail}}" alt="">
@@ -20,7 +22,7 @@
              <p>{{listing.detail|slice:"70"}}...</p>
              <a href="/listing/{{listing.slug}}/{{listing.id}}" class="btn">View</a>
              {% if listing.Agent.profile %}
-             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}"" class="btn">Contact Agent</a>
+             <a href="{% url 'show_profile_page' listing.Agent.profile.id %}" class="btn">Contact Agent</a>
              {% endif %}
           </div>
        </div>
@@ -29,8 +31,8 @@
     <div class="box">
         <div class="content">
             <h3>:(</h3>
-            <p> There are no {{category.title}} listed at the moment, you can come back and explore later</p>
-            <a href="{% url 'categories'%}" class="btn"> << Back</a> 
+            <p> There is no property listed {{type_name}} at the moment, you can come back and explore later</p>
+            <a href="{% url 'tenancy'%}" class="btn"> Back</a> 
          </div>
     </div>
         
@@ -41,4 +43,4 @@
  
  </section>
  
- {% endblock %}
+{% endblock %}
