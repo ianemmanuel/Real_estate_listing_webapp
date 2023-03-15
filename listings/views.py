@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView
 
 def home(request):
 	categories=Category.objects.all()
-	data=Listing.objects.all()[:3]
+	data=Listing.objects.all().order_by('-id')[:3]
 	return render(request,'index/home.html',{'data':data, 'categories':categories})
 
 # Category

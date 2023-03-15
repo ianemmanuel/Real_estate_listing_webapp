@@ -10,7 +10,7 @@ urlpatterns=[
      path('listing/<str:slug>/<int:id>', views.listing_detail, name='listing'),
      path('tenancy/',views.tenancy,name='tenancy'),
      # path('listings/<str:type>/', views.tenancy_listings_view, name='listings'),
-     path('<str:type_name>/', views.tenancy_listings_view, name='listings_by_type'),
+     path('listings/<str:type_name>/', views.tenancy_listings_view, name='listings_by_type'),
 
 ]
 

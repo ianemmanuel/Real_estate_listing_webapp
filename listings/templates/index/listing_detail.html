@@ -55,25 +55,32 @@
     </div>
  
  </section>
- {% if data.images %}
+ {% if data.image_1 or data.image_2 or data.image_3 or data.image_4 %}
  <section class="home">
    <h3> Images </h3>
    <div class="swiper home-slider">
-   
+      
       <div class="swiper-wrapper">
-
-         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-1.jpg' %}) no-repeat">
+      {% if data.image_1%}
+         <div class="swiper-slide slide" style="background:url(/media/{{data.image_1}}) no-repeat">
             
          </div>
-
-         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
+      {% endif %}
+      {% if data.image_2 %}
+         <div class="swiper-slide slide" style="background:url(/media/{{data.image_2}}) no-repeat">
            
         </div>
-
-         <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-3.jpg' %}) no-repeat">
+      {% endif %}
+      {% if data.image_3 %}
+         <div class="swiper-slide slide" style="background:url(/media/{{data.image_3}}) no-repeat">
             
          </div>
-         
+      {% endif %}
+      {% if data.image_4 %}
+         <div class="swiper-slide slide" style="background:url(/media/{{data.image_4}}) no-repeat">
+            
+         </div>
+      {% endif %}
       </div>
    
       <div class="swiper-button-next"></div>

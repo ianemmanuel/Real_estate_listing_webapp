@@ -42,6 +42,10 @@ class Listing(models.Model):
     area_sqft = models.DecimalField(max_digits=12, decimal_places= 2)
     detail= models.TextField(blank=True,null=True)
     thumbnail = models.ImageField(blank=True, null=True,upload_to='thumbnail_imgs/')
+    image_1 = models.ImageField(blank=True, null=True,upload_to='image_imgs1/')
+    image_2 = models.ImageField(blank=True, null=True,upload_to='image_imgs2/')
+    image_3 = models.ImageField(blank=True, null=True,upload_to='image_imgs3/')
+    image_4 = models.ImageField(blank=True, null=True,upload_to='image_imgs4/')
     slug  = models.CharField(max_length=400,default=title)
     video = models.FileField(upload_to="videos_uploaded/",null=True, blank=True)
     
