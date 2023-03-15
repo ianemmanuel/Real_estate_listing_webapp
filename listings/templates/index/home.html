@@ -23,7 +23,7 @@
                      </div>
                   </div>
                {% else %}
-               <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
+               <div class="swiper-slide slide" style="background:url(/media/{{category.image}})">
                   <div class="content">
                      <span>explore, discover</span>
                      <h3>{{category.title}}</h3>
@@ -33,7 +33,7 @@
                {% endif %}
             {% endfor %}
          {% else %}
-          <div class="swiper-slide slide" style="background:url({% static 'images/images/home-slide-2.jpg' %}) no-repeat">
+          <div class="swiper-slide slide" style="background:url({% static 'images/home-slide-1.jpg' %}) no-repeat">
             <div class="content">
                <span>explore, discover</span>
                <h3>welcome to Property Merchant</h3>
