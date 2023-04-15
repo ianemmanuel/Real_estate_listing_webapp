@@ -16,6 +16,7 @@
               <a href="{% url 'add_listing'%}" class="btn">List </a>
            </div>
         </div>
+        {% if user.profile.id%}
         <div class="box">
          <div class="content">
             <h3>My Property <i class="fas fa-home"></i></h3>
@@ -24,6 +25,7 @@
             <a href="{% url 'my_listings' user.profile.id %}" class="btn">My Property</a>
          </div>
       </div>
+      {% endif %}
 
         {% endif %}
         {% if user.profile.id %}

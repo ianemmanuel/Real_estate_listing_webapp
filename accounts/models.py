@@ -25,7 +25,7 @@ class Employee(models.Model):
 
 
     class Meta:
-        verbose_name_plural='3. Employees'
+        verbose_name_plural='3. Agents'
 
 
 class Profile(models.Model):
